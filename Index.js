@@ -7,9 +7,16 @@ const bot = mineflayer.createBot({
   auth: 'offline'
 })
 
-bot.on('login', () => {
-  console.log('Bot joined the server!')
+bot.once('spawn', () => {
+  console.log('✅ bot_bhai joined!')
 })
 
-bot.on('error', console.log)
-bot.on('end', () => console.log('Bot disconnected'))
+bot.on('error', console.error)
+
+bot.on('kicked', reason => {
+  console.log('Kicked:', reason)
+})
+
+bot.on('end', () => {
+  console.log('Disconnected')
+})
